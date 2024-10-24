@@ -12,7 +12,7 @@ st.set_page_config(page_title="Health Assistant",
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Correctly specify the model path
-model_path = '/Users/mohammedmazin/Documents/saved models/diabetes_model.sav'
+model_path = "/Users/mohammedmazin/Documents/saved models/diabetes_model.sav"
 
 # Loading the saved model
 try:
