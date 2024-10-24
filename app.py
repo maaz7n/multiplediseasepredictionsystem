@@ -12,9 +12,9 @@ st.set_page_config(page_title="Health Assistant",
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Correctly specify the model path
-model_path = os.path.join('/Users/mohammedmazin/Downloads', 'diabetes_model.sav')
+model_path = '/Users/mohammedmazin/Documents/saved models/diabetes_model.sav'
 
-# Loading the saved models
+# Loading the saved model
 try:
     with open(model_path, 'rb') as file:
         diabetes_model = pickle.load(file)
@@ -68,12 +68,23 @@ if selected == 'Diabetes Prediction':
     if st.button('Diabetes Test Result'):
         if diabetes_model:  # Ensure the model is loaded
             try:
-                user_input = [Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin,
-                              BMI, DiabetesPedigreeFunction, Age]
+                # Prepare user input for prediction
+                user_input = [
+                    Pregnancies,
+                    Glucose,
+                    BloodPressure,
+                    SkinThickness,
+                    Insulin,
+                    BMI,
+                    DiabetesPedigreeFunction,
+                    Age
+                ]
                 user_input = [float(x) for x in user_input]  # Convert inputs to float
 
+                # Make prediction
                 diab_prediction = diabetes_model.predict([user_input])
 
+                # Display the result
                 if diab_prediction[0] == 1:
                     diab_diagnosis = 'The person is diabetic'
                 else:
